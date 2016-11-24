@@ -1,3 +1,97 @@
+#define ADC_ADDR					(0x44E0D000)
+
+
+#define ADC_STEPCONFIG_DIFF_CNTRL   (0x01<<25)
+
+//differential mode or single ended mode
+#define ADC_SINGLE_ENDED_OPER_MODE  (0)
+#define ADC_DIFFERENTIAL_OPER_MODE	(1)
+
+//ADC channel
+#define ADC_CHANNEL1            	(0)			//PIN AN0
+#define ADC_CHANNEL2            	(1) 		//PIN AN1
+#define ADC_CHANNEL3            	(2)   		//PIN AN2
+#define ADC_CHANNEL4            	(3)   		//PIN AN3
+#define ADC_CHANNEL5            	(4)   		//PIN AN4
+#define ADC_CHANNEL6            	(5) 		//PIN AN5
+#define ADC_CHANNEL7            	(6) 		//PIN AN6
+#define ADC_CHANNEL8            	(7)			//PIN AN7
+
+
+//SEL_RFM_SWC field in step config register
+#define ADC_NEGATIVE_REF_VSSA		(0)			//SEL_RFM pins SW configuration (23:24)
+#define ADC_NEGATIVE_REF_XNUR		(1)
+#define ADC_NEGATIVE_REF_YNLR		(2)
+#define ADC_NEGATIVE_REF_VREFN		(3)
+
+#define ADC_POSITIVE_REF_VDDA		(0)			//SEL_RFP pins SW configuration (12:14)
+#define ADC_POSITIVE_REF_XPUL		(1)
+#define ADC_POSITIVE_REF_YPLL		(2)
+#define ADC_POSITIVE_REF_VREFP		(3)
+
+#define SEL_RFM_SWC_CLEAR			(0X03<<23)	//& ~SEL_RFM_SWC_CLEAR will clear the SEL_RFM_SWC field
+#define SEL_RFM_SWC_SHIFT			(23)		//SEL_RFM_SWC is at 23:24 bit
+
+//SEL_INP_SWC field in step config register
+#define SEL_INP_SWC_CLEAR			(0XF<<19)	//& ~SEL_INP_SWC_CLEAR will clear the SEL_INP_SWC field
+#define SEL_INP_SWC_SHIFT			(19)		//SEL_INP_SWC is at 19:22 bit
+
+//SEL_INM_SWC field in step config register
+#define SEL_INM_SWC_CLEAR			(0X0F<<15)	//& ~SEL_INM_SWC_CLEAR will clear the SEL_INM_SWC field
+#define SEL_INM_SWC_SHIFT			(15)		//SEL_INM_SWC is at 15:18 bit
+
+//SEL_RFP_SWC field in step config register
+#define SEL_RFP_SWC_CLEAR			(0x07<<12)	//& ~SEL_RFP_SWC_CLEAR will clear the SEL_INM_SWC field
+#define SEL_RFP_SWC_SHIFT			(12)		//SEL_RFP_SWC is at 15:18 bit
+
+
+#define ADC_STEPCONFIG_WPNSW_SWC_CLEAR   		(0x01<<11)
+#define ADC_STEPCONFIG_WPNSW_SWC_SHIFT  		(0x0000000Bu)
+
+#define ADC_STEPCONFIG_XNNSW_SWC_CLEAR   		(0x01<<6)
+#define ADC_STEPCONFIG_XNNSW_SWC_SHIFT  		(0x00000006u)
+
+#define ADC_STEPCONFIG_XNPSW_SWC_CLEAR   		(0x01<<9)
+#define ADC_STEPCONFIG_XNPSW_SWC_SHIFT  		(0x00000009u)
+
+#define ADC_STEPCONFIG_XPPSW_SWC_CLEAR   		(0x01<<5)
+#define ADC_STEPCONFIG_XPPSW_SWC_SHIFT  		(0x00000005u)
+
+#define ADC_STEPCONFIG_YNNSW_SWC_CLEAR   		(0x01<<8)
+#define ADC_STEPCONFIG_YNNSW_SWC_SHIFT  		(0x00000008u)
+
+#define ADC_STEPCONFIG_YPNSW_SWC_CLEAR   		(0x01<<10)
+#define ADC_STEPCONFIG_YPNSW_SWC_SHIFT  		(0x0000000Au)
+
+#define ADC_STEPCONFIG_YPPSW_SWC_CLEAR   		(0x01<<7)
+#define ADC_STEPCONFIG_YPPSW_SWC_SHIFT  		(0x00000007u)
+
+
+
+// FIFO field
+#define ADC_FIFO_0                           	(0)
+#define ADC_FIFO_1                           	(1)
+#define ADC_FIFO_SELECTION_CLEAR			 	(0X01<<26)
+#define ADC_FIFO_SELECTION_SHIFT			 	(26)
+
+//MODE field
+#define ADC_MODE_CLEAR						 	(0X03)
+#define ADC_MODE_SW_ONE_SHOT					(0X00)
+#define ADC_MODE_SW_CONTINUOUS					(0x01)
+#define ADC_MODE_HW_ONE_SHOT					(0X10)
+#define ADC_MODE_HW_CONTINUOUS					(0x11)
+#define ADC_MODE_SHIFT							(0x00)
+
+//ADC work mode
+#define ADC_FOUR_WIRE_MODE                   	(1)		//for touch screen
+#define ADC_FIVE_WIRE_MODE                   	(2)		//for touch screen
+#define ADC_GENERAL_PURPOSE_MODE             	(0)		//for general purpose
+#define ADC_WORK_MODE_CLEAR						(0x03<<5)
+#define ADC_WORK_MODE_SHIFT						(5)		
+
+//ADC interrupt bit set
+#define ADC_END_OF_SEQUENCE_INTR				(0x01<<1)	//end of sequence interrupt
+
 
 
 struct adc_csreg

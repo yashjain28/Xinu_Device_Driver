@@ -1,13 +1,19 @@
 #include <xinu.h>
 extern sid32 semadc;
 devcall adcread(struct dentry *devptr, char *buf, int32 count){
-		
-		wait(semadc);
+
 		struct adc_csreg *controlreg=(struct adc_csreg*)devptr->dvcsr;
 		controlreg->stepEnable|=1;
 		int32 fifodata,i;
 		
+
 		int32 fcount=controlreg->fifoInfo[0].fifoCount;
+		
+		kprintf("inside read");
+		
+		wait(semadc);
+		kprintf("starting read");
+
 		for(i=0;i<fcount;i++){
 			fifodata=controlreg->fifoData0 & 0xFFF;
 			kprintf("\nfifodata0: %d\t",fifodata);			

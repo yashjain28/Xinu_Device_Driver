@@ -17,14 +17,14 @@ process	main(void)
 		resume(create(shell, 4096, 20, "shell", 1, CONSOLE));
 	}
 	*/
-	char buf[2];
+	char buf[4];
 	int32 i=0;
 	kprintf("start of main");
 	for(i=0;i<10;i++){
-		read(ADC1, buf,2);
+		read(ADC, buf,4);
 		sleep(2);	
 	}
-	read(ADC1, buf,2);
+	read(ADC, buf,4);
 	kprintf("end of main");
 
 	return OK;

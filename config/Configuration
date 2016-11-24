@@ -104,7 +104,7 @@ spi:
 		-intr ionull
 
 /* type of a ADC device */
-adc1:
+adc:
 	on top
 		-i adcinit	-o ioerr	-c ioerr
 		-r adcread	-g ioerr	-p ioerr
@@ -172,7 +172,7 @@ adc1:
 
    /* ADC devices */
 
-   ADC1 is adc1 on top csr 0x44E0D000
+   ADC is adc on top csr 0x44E0D000 -irq 16
 
 %%
 

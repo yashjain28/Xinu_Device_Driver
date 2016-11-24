@@ -201,10 +201,10 @@ struct	dentry	devtab[NDEVS] =
 	  (void *)ionull, (void *)ionull, (void *)spicontrol,
 	  (void *)0x481a0000, (void *)ionull, 0 },
 
-/* ADC1 is adc1 */
-	{ 26, 0, "ADC1",
+/* ADC is adc */
+	{ 26, 0, "ADC",
 	  (void *)adcinit, (void *)ioerr, (void *)ioerr,
 	  (void *)adcread, (void *)ioerr, (void *)ioerr,
 	  (void *)ioerr, (void *)ioerr, (void *)ioerr,
-	  (void *)0x44e0d000, (void *)adchandler, 0 }
+	  (void *)0x44e0d000, (void *)adchandler, 16 }
 };
