@@ -1,1 +1,1 @@
-compile/binaries/*
+compile/binaries/*.o

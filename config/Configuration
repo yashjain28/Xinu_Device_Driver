@@ -103,6 +103,13 @@ spi:
 		-w ionull	-s ionull	-n spicontrol
 		-intr ionull
 
+gpio:
+	on top
+		-i gpioinit	-o ionull	-c ionull
+		-r gpioread	-g ionull	-p ionull
+		-w gpiowrite	-s ionull	-n ionull
+		-intr gpiohandler
+
 /* type of a ADC device */
 adc:
 	on top
@@ -169,6 +176,9 @@ adc:
 
    SPI0 is spi on top csr 0x48030000
    SPI1 is spi on top csr 0x481A0000
+
+   /* GPIO devices */
+   GPIOD is gpio on top -irq 98
 
    /* ADC devices */
 

@@ -601,8 +601,14 @@ extern devcall adcread(struct dentry *devptr, char *buf, int32 count);
 
 extern void adchandler(uint32 xnum);
 
-
-
+extern int32	gpiowrite (
+		struct	dentry *devptr,
+		void	*buf,
+		uint32	count
+	);
+extern devcall gpioread(struct dentry *devptr, char *buff, int32 count);
+extern int32 gpioinit(struct	dentry *devptr);
+extern void gpiohandler(uint32 xnum);
 
 
 /* NETWORK BYTE ORDER CONVERSION NOT NEEDED ON A BIG-ENDIAN COMPUTER */
