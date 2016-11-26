@@ -60,53 +60,6 @@ void initadcinterrupt(struct dentry *devptr){
 	intrptr->ilr[devptr->dvirq] |=(0x0A)<<2;
 }
 
-void TestRegAddress(struct adc_csreg* pReg)
-{
-	kprintf("revison = %x, %x\r\n", (unsigned int)&pReg->revison,pReg->revison);
-	kprintf("sysconfig = %x, %x\r\n", &pReg->sysconfig,pReg->sysconfig);
-	kprintf("irqStatusRaw = %x, %x\r\n", (unsigned int)&pReg->irqStatusRaw,pReg->irqStatusRaw);
-	kprintf("irqStatus = %x, %x\r\n", (unsigned int)&pReg->irqStatus,pReg->irqStatus);
-	kprintf("irqEnableSet = %x, %x\r\n", (unsigned int)&pReg->irqEnableSet,pReg->irqEnableSet);	
-	kprintf("irqEnableClr = %x, %x\r\n", (unsigned int)&pReg->irqEnableClr,pReg->irqEnableClr);
-	kprintf("irqWakeup = %x, %x\r\n", (unsigned int)&pReg->irqWakeup,pReg->irqWakeup);
-	kprintf("dmaEnableSet = %x, %x\r\n", (unsigned int)&pReg->dmaEnableSet,pReg->dmaEnableSet);
-	kprintf("dmaEnableClr = %x, %x\r\n", (unsigned int)&pReg->dmaEnableClr,pReg->dmaEnableClr);
-	kprintf("ctrl = %x, %x\r\n", (unsigned int)&pReg->ctrl,pReg->ctrl);
-	kprintf("adcStat = %x, %x\r\n", (unsigned int)&pReg->adcStat,pReg->adcStat);
-	kprintf("adcRange = %x, %x\r\n", (unsigned int)&pReg->adcRange,pReg->adcRange);
-	kprintf("adcClkDiv = %x, %x\r\n", (unsigned int)&pReg->adcClkDiv,pReg->adcClkDiv);
-	kprintf("adcMisc = %x, %x\r\n", (unsigned int)&pReg->adcMisc,pReg->adcMisc);
-	kprintf("stepEnable = %x, %x\r\n", (unsigned int)&pReg->stepEnable,pReg->stepEnable);
-	kprintf("idleConfig = %x, %x\r\n", (unsigned int)&pReg->idleConfig,pReg->idleConfig);
-	kprintf("tsChargeStepconfig = %x, %x\r\n", (unsigned int)&pReg->tsChargeStepconfig,pReg->tsChargeStepconfig);
-	kprintf("tsChargeDelay = %x, %x\r\n", (unsigned int)&pReg->tsChargeDelay,pReg->tsChargeDelay);
-	int i=0;
-	for(i=0;i<16;i++)
-	{
-		kprintf("stepConfig%d = %x, %x\r\n", i, (unsigned int)&pReg->step[i].stepConfig,pReg->step[i].stepConfig);
-		kprintf("stepDelay%d = %x, %x\r\n", i, (unsigned int)&pReg->step[i].stepDelay,pReg->step[i].stepDelay);
-	}
-	for(i=0;i<2;i++)
-	{
-		kprintf("fifoCount%d = %x, %x\r\n", i,(unsigned int)&pReg->fifoInfo[i].fifoCount,pReg->fifoInfo[i].fifoCount);
-		kprintf("fifoThreshold%d = %x, %x\r\n", i, (unsigned int)&pReg->fifoInfo[i].fifoThreshold,pReg->fifoInfo[i].fifoThreshold);
-		kprintf("dmaReq%d = %x, %x\r\n", i, (unsigned int)&pReg->fifoInfo[i].dmaReq,pReg->fifoInfo[i].dmaReq);
-	}
-	kprintf("fifoData0 = %x, %x\r\n", (unsigned int)&pReg->fifoData0,pReg->fifoData0);
-	kprintf("fifoData1 = %x, %x\r\n", (unsigned int)&pReg->fifoData1,pReg->fifoData1);
-
-	int bank =16;
-	struct	intc_csreg *csrptr = (struct intc_csreg *)0x48200000;
-	//kprintf("pending irq = %x\r\n",csrptr->);
-	kprintf("ITR = %x\r\n",csrptr->banks[bank].itr);
-	kprintf("mir = %x\r\n",csrptr->banks[bank].mir);
-	kprintf("mir_clear = %x\r\n",csrptr->banks[bank].mir_clear);
-	kprintf("mir_set = %x\r\n",csrptr->banks[bank].mir_set);
-	kprintf("isr_set = %x\r\n",csrptr->banks[bank].isr_set);
-	kprintf("isr_clear = %x\r\n",csrptr->banks[bank].isr_clear);
-	kprintf("pending_irq = %x\r\n",csrptr->banks[bank].pending_irq);
-	kprintf("pending_fiq = %x\r\n",csrptr->banks[bank].pending_fiq);
-}
 
 void ADCStepConfig(struct adc_csreg *pReg, unsigned int stepSelect, 
 					unsigned int positiveChannel,unsigned int positiveRef,
@@ -160,16 +113,16 @@ void ADCStepAnalogGroundConfig(struct adc_csreg *pReg, unsigned int stepSelect,
 }
 
 devcall adcinit(struct dentry *devptr){
-	kprintf("\nStarted adcinit\t");
+	//kprintf("\nStarted adcinit\t");
 	int32 *clockwakeup=(int32 *)CM_WKUP_ADC_TSC_CLKCTRL;
 	struct adc_csreg *controlreg=(struct adc_csreg*)devptr->dvcsr;
-	int32 v=1;
+	//int32 v=1;
 	
 	semadc=semcreate(0);
 	InitialL4Clock();
 	initadcinterrupt(devptr);
 	//*clockwakeup|=0x02;
-	kprintf("1\t");
+	//kprintf("1\t");
 	//config adc clock
 	controlreg->adcClkDiv&=~(0xffff);
 	controlreg->adcClkDiv|=7;
@@ -181,12 +134,8 @@ devcall adcinit(struct dentry *devptr){
 	controlreg->step[0].stepConfig&=~(1<<25);
 	//fifoselect 26th bit 
 
-
-
-
-
 	controlreg->stepEnable|=0x02;
-	kprintf("2");
+	//kprintf("2");
 	
 	ADCStepConfig(controlreg,0,0,0,0,0);
 	ADCStepAnalogSupplyConfig(controlreg, 0, 0, 0, 0);
@@ -205,8 +154,8 @@ devcall adcinit(struct dentry *devptr){
 	controlreg->irqStatus |= 0x7FFF;
 	controlreg->irqEnableSet|=2;
 	controlreg->ctrl |=1;
-	kprintf("adcinitialized\t\n");
-	TestRegAddress(controlreg);
+	//kprintf("adcinitialized\t\n");
+	//TestRegAddress(controlreg);
 	return OK;
 }
 

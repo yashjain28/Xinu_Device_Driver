@@ -9,22 +9,22 @@ devcall adcread(struct dentry *devptr, char *buf, int32 count){
 
 		int32 fcount=controlreg->fifoInfo[0].fifoCount;
 		
-		kprintf("inside read");
+		//kprintf("inside read");
 		
 		wait(semadc);
-		kprintf("starting read");
+		//kprintf("starting read");
 
 		for(i=0;i<fcount;i++){
 			fifodata=controlreg->fifoData0 & 0xFFF;
-			kprintf("\nfifodata0: %d\t",fifodata);			
+		//	kprintf("\nfifodata0: %d\t",fifodata);			
 		}
 
-		kprintf("\tfifodata0: %d\t",fifodata);
+		//kprintf("\tfifodata0: %d\t",fifodata);
 		buf[0]=fifodata & 0xFF;
 		buf[1]=(fifodata & 0xFF00)>>8;
 		controlreg->fifoData0=0x0000;
 		controlreg->stepEnable&=~1;
-		kprintf("\toutside adcread\t");
+		//kprintf("\toutside adcread\t");
 		
 		return OK;
 }

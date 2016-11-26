@@ -616,8 +616,14 @@ extern devcall tempread(struct dentry *devptr, char *buf, int32 count);
 
 extern devcall tempinit(struct dentry	*devptr);
 
+/* in led folder */
+extern devcall ledinit(struct dentry *devptr);
+extern devcall ledwrite(struct	dentry *devptr, void	*buf, uint32	count);
 
+/* in motor folder */
 
+extern devcall motorinit(struct dentry *devptr);
+extern devcall motorwrite(struct dentry *devptr, void *buf, uint32 count);
 
 
 

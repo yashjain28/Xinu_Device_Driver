@@ -54,6 +54,8 @@ extern	struct	dentry	devtab[]; /* one entry per device */
 #define GPIOD               26	/* type gpio     */
 #define ADC                 27	/* type adc      */
 #define TMPS                28	/* type tmps     */
+#define MOTOR               29	/* type motor    */
+#define LED                 30	/* type led      */
 
 /* Control block sizes */
 
@@ -71,8 +73,10 @@ extern	struct	dentry	devtab[]; /* one entry per device */
 #define	Ngpio	1
 #define	Nadc	1
 #define	Ntmps	1
+#define	Nmotor	1
+#define	Nled	1
 
-#define NDEVS 29
+#define NDEVS 31
 
 
 /* Configuration and Size Constants */

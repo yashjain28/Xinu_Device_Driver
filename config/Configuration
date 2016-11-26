@@ -125,6 +125,21 @@ tmps:
 		-r tempread	-g ioerr	-p ioerr
 		-w ioerr	-s ioerr	-n ioerr
 		-intr ionull
+
+motor:
+	on top
+		-i motorinit	-o ioerr	-c ioerr
+		-r ioerr	-g ioerr	-p ioerr
+		-w motorwrite	-s ioerr	-n ioerr
+		-intr ionull
+
+led:
+	on top
+		-i ledinit	-o ioerr	-c ioerr
+		-r ioerr	-g ioerr	-p ioerr
+		-w ledwrite	-s ioerr	-n ioerr
+		-intr ionull
+
 %%
 
 /* Actual device declarations that each give the name of a device that	*/
@@ -193,6 +208,12 @@ tmps:
    /* Temperature sensor */
  
    TMPS is tmps on top
+
+   /* Motor Actuator */
+   MOTOR is motor on top
+
+   /* Led Actuator */
+   LED is led on top
 %%
 
 /* Configuration and Size Constants */
