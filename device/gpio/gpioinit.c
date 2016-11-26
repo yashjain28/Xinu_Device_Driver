@@ -26,15 +26,10 @@ void configure_gpio_registers(){
 	bit_to_set = (0x1)<<13;
 	gpio1->gpio_risingdetect |= bit_to_set;
 	gpio1->gpio_irqstatus_set_0 |= bit_to_set;
-	gpio1->gpio_irqawaken_0 |= bit_to_set;
+	//gpio1->gpio_irqawaken_0 |= bit_to_set;
 
-
-	gpio1->gpio_oe = 0;
-	gpio1->gpio_cleardataout = 0xFFFFFFFF;
-	gpio1->gpio_oe = 0xFFFFFFFF;
-
-	kprintf("gpio irq status %x \n", gpio1->gpio_irqstatus_set_0);
-	kprintf("gpio rising edge %x \n ", gpio1->gpio_risingdetect);
+	//kprintf("gpio irq status %x \n", gpio1->gpio_irqstatus_set_0);
+	//kprintf("gpio rising edge %x \n ", gpio1->gpio_risingdetect);
 }
 
 int32 gpioinit(struct	dentry *devptr){
@@ -43,12 +38,12 @@ int32 gpioinit(struct	dentry *devptr){
 	read_sem = semcreate(0);
 	
 	kprintf("gpio initialized \n");
-	clk_configure();
+	//clk_configure();
 	configure_gpio_registers();
 	csrptr->threshold = 0X0FF;
 	set_evec( devptr->dvirq, (uint32)devptr->dvintr );
 	csrptr->ilr[devptr->dvirq] &= ~(0x01);
-	csrptr->ilr[devptr->dvirq+1] &= ~(0x01);
+	//csrptr->ilr[devptr->dvirq+1] &= ~(0x01);
 	csrptr->ilr[devptr->dvirq] |= (0x0A<<2);
 	
 	return OK;
