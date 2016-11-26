@@ -213,5 +213,12 @@ struct	dentry	devtab[NDEVS] =
 	  (void *)adcinit, (void *)ioerr, (void *)ioerr,
 	  (void *)adcread, (void *)ioerr, (void *)ioerr,
 	  (void *)ioerr, (void *)ioerr, (void *)ioerr,
-	  (void *)0x44e0d000, (void *)adchandler, 16 }
+	  (void *)0x44e0d000, (void *)adchandler, 16 },
+
+/* TMPS is tmps */
+	{ 28, 0, "TMPS",
+	  (void *)tempinit, (void *)ioerr, (void *)ioerr,
+	  (void *)tempread, (void *)ioerr, (void *)ioerr,
+	  (void *)ioerr, (void *)ioerr, (void *)ioerr,
+	  (void *)0x0, (void *)ionull, 0 }
 };

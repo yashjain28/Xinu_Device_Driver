@@ -41,6 +41,7 @@ REBUILDFLAGS	=	-s $(TOPDIR)/system  debug.c 	\
 			-s $(TOPDIR)/device/spi			\
 			-s $(TOPDIR)/device/gpio		\
 			-s $(TOPDIR)/device/adc			\
+			-s $(TOPDIR)/device/tempsensor	\
 			-s $(TOPDIR)/net  'arp_dump*'  		\
 				'dhcp_dump*'  pxe.c		\
 			-s $(TOPDIR)/shell  'xsh_rdstest*'

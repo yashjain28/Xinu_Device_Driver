@@ -110,7 +110,7 @@ gpio:
 		-w gpiowrite	-s ionull	-n ionull
 		-intr gpiohandler
 
-/* type of a ADC device */
+/* ADC device */
 adc:
 	on top
 		-i adcinit	-o ioerr	-c ioerr
@@ -118,7 +118,13 @@ adc:
 		-w ioerr	-s ioerr	-n ioerr
 		-intr adchandler
 
-
+/* Temperature Sensor */
+tmps:
+	on top
+		-i tempinit	-o ioerr	-c ioerr
+		-r tempread	-g ioerr	-p ioerr
+		-w ioerr	-s ioerr	-n ioerr
+		-intr ionull
 %%
 
 /* Actual device declarations that each give the name of a device that	*/
@@ -180,10 +186,13 @@ adc:
    /* GPIO devices */
    GPIOD is gpio on top -irq 98
 
-   /* ADC devices */
+   /* ADC */
 
    ADC is adc on top csr 0x44E0D000 -irq 16
 
+   /* Temperature sensor */
+ 
+   TMPS is tmps on top
 %%
 
 /* Configuration and Size Constants */

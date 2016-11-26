@@ -611,6 +611,17 @@ extern int32 gpioinit(struct	dentry *devptr);
 extern void gpiohandler(uint32 xnum);
 
 
+/* in tempuratue sensor folder */
+extern devcall tempread(struct dentry *devptr, char *buf, int32 count);
+
+extern devcall tempinit(struct dentry	*devptr);
+
+
+
+
+
+
+
 /* NETWORK BYTE ORDER CONVERSION NOT NEEDED ON A BIG-ENDIAN COMPUTER */
 #define	htons(x)   ( ( 0xff & ((x)>>8) ) | ( (0xff & (x)) << 8 ) )
 #define	htonl(x)   (  (((x)>>24) & 0x000000ff) | (((x)>> 8) & 0x0000ff00) | \
