@@ -5,12 +5,12 @@ devcall adcread(struct dentry *devptr, char *buf, int32 count){
 		struct adc_csreg *controlreg=(struct adc_csreg*)devptr->dvcsr;
 		controlreg->stepEnable|=1;
 		int32 fifodata,i;
-		
+		char buffer[1];
 
 		int32 fcount=controlreg->fifoInfo[0].fifoCount;
-		
+		buffer[0]=(count+100);
+		write(GPIOD,buffer,1);		
 		//kprintf("inside read");
-		
 		wait(semadc);
 		//kprintf("starting read");
 
@@ -25,6 +25,7 @@ devcall adcread(struct dentry *devptr, char *buf, int32 count){
 		controlreg->fifoData0=0x0000;
 		controlreg->stepEnable&=~1;
 		//kprintf("\toutside adcread\t");
-		
+		buffer[0]=count;
+		write(GPIOD,buffer,1);		
 		return OK;
 }
