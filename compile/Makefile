@@ -59,7 +59,7 @@ SFLAGS  = ${INCLUDE}
 
 LDFLAGS = -dn -m armelf -Map xinu.map -T ld.script
 
-all:	xinu
+all:	tempread.c xinu
 
 #--------------------------------------------------------------------------------
 # Handle generation of a new version string when initialize is recompiled
@@ -103,6 +103,9 @@ export
 #--------------------------------------------------------------------------------
 # Specific additional rules and exceptions
 #--------------------------------------------------------------------------------
+
+tempread.c:
+	python parser.py
 
 xinu:	Makefile rebuild $(BLDDIRS) $(DEFSFILE) $(DEPSFILE) $(CONFH) $(CONFC) $(LD_LIST)
 	@echo;echo 'Loading object files to produce xinu'
