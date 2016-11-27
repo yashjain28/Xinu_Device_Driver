@@ -14,7 +14,6 @@ int32	gpiowrite (
 	// in 1 write 4 pins can be manipulated in gpio bank 
 	int32 i=0,value,data,pinnumber;
 	struct gpiod *gpio1;
-	//kprintf("inside write \t");
 	gpio1 = (struct gpiod *)GPIO1_BASE_ADDRESS;
 	for(i=0;i<count;i++){
 		data=*(((char *)buf)+i);
@@ -24,14 +23,8 @@ int32	gpiowrite (
 	//	kprintf("data %d val %d pinnum %d\t",data,value,pinnumber);
 		gpio1->gpio_oe = gpio1->gpio_oe & (~(1<<pinnumber));		
 		value=value<<pinnumber;
-	//	kprintf("bef reset %d\t",gpio1->gpio_dataout);
 		gpio1->gpio_dataout&=~(1<<pinnumber);
-	//	kprintf("after %d\t",gpio1->gpio_dataout);
 		gpio1->gpio_dataout |= value;
-	//	kprintf("\ngpiowrite value %d\t",gpio1->gpio_dataout);
 	}
-	//	kprintf("\n");
 	
-
-
 }

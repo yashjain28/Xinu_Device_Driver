@@ -9,7 +9,8 @@ devcall adcread(struct dentry *devptr, char *buf, int32 count){
 
 		int32 fcount=controlreg->fifoInfo[0].fifoCount;
 		buffer[0]=(count+100);
-		write(GPIOD,buffer,1);		
+		write(GPIOD,buffer,1);
+		sleep(1);		
 		//kprintf("inside read");
 		wait(semadc);
 		//kprintf("starting read");

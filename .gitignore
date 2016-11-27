@@ -1,1 +1,4 @@
 compile/binaries/*.o
+compile/xinu*
+compile/.defs
+compile/.vers_num

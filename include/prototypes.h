@@ -619,6 +619,8 @@ extern devcall tempinit(struct dentry	*devptr);
 /* in led folder */
 extern devcall ledinit(struct dentry *devptr);
 extern devcall ledwrite(struct	dentry *devptr, char *buf, uint32	count);
+extern void ledkickout();
+extern void ledhandler_out();
 
 /* in motor folder */
 
