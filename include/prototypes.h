@@ -628,7 +628,7 @@ extern void ledhandler_out();
 
 extern devcall motorinit(struct dentry *devptr);
 extern devcall motorwrite(struct dentry *devptr, char *buf, uint32 count);
-
+extern void direction(int32 motornum,int32 dir);
 
 extern void nokiatune(char pinnum);
 
