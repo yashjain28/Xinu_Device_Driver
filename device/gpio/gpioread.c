@@ -21,5 +21,5 @@ devcall gpioread(struct dentry *devptr, char *buff, int32 count){
 	//kprintf("gpio irq status %x \n", gpio1->gpio_irqstatus_set_0);
 	//kprintf("gpio rising edge %x \n ", gpio1->gpio_risingdetect);
 
-	return OK;
+	return buff[0];
 }
