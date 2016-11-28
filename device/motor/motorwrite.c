@@ -1,9 +1,8 @@
 #include <xinu.h>
 devcall motorwrite(struct dentry *devptr,char *buf,uint32 count)
 {
-	int32 motorF[2],motorB[2];//index 0 for motor 1 and index 1 for motor 2
 	motorF[0] = 14;
-	motorB[0] = 16;
+	motorB[0] = 15;
 	motorF[1] = 16;
 	motorB[1] = 17;
 	if(count == 1)

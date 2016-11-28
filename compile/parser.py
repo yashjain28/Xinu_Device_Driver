@@ -53,8 +53,8 @@ device_pinno1B = data["devices"][2]["pinno1B"]
 if device_name == "motor":
 	fp = open('../device/motor/motorwrite.c', 'w')
 	op_write = "#include <xinu.h>\ndevcall motorwrite(struct dentry *devptr,char *buf,uint32 count)"+\
-	            "\n{\n\tint32 motorF[2],motorB[2];//index 0 for motor 1 and index 1 for motor 2\n\tmotorF[0] = "+device_pinno0F+";\n\tmotorB[0] = "+\
-	            device_pinno1F+";\n\tmotorF[1] = "+device_pinno1F+";\n\tmotorB[1] = "+device_pinno1B+";\n\tif(count == 1)\n\t{\n\t\t"+\
+	            "\n{\n\tmotorF[0] = "+device_pinno0F+";\n\tmotorB[0] = "+\
+	            device_pinno0B+";\n\tmotorF[1] = "+device_pinno1F+";\n\tmotorB[1] = "+device_pinno1B+";\n\tif(count == 1)\n\t{\n\t\t"+\
 	            device_function+"(motor1,forwarddir);\n\t\t"+device_function+"(motor2,forwarddir);\n\t}\n\telse if(count == 2)\n\t{\n\t\t"+\
 	            device_function+"(motor1,backwarddir);\n\t\t"+device_function+"(motor2,backwarddir);\n\t}\n\telse if(count == 3)\n\t{\n\t\t"+\
 	            device_function+"(motor1,stopdir);\n\t\t"+device_function+"(motor2,forwarddir);\n\t}\n\telse if(count == 4)\n\t{\n\t\t"+\
