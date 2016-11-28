@@ -10,23 +10,33 @@
 		 	"formula": "((((temp*1.0/4096.0)*1800.0)-500.0)/10.0)" 
 		},
 		{
-			"name" : "led",
+			"name" : "LED",
             "id"   : "2",
-            "function" : "write",
+            "function1" : "write",
+            "function2" : "read",
             "pinno" : "13",
             "devicetype" : "GPIOD",
             "formula" : "((1*100)+pinno)",
             "attribute1" : "ON",
-            "attribute2" : "OFF"
+            "attribute2" : "OFF",
+            "devicetype" : "GPIOD"
 		},
 		{
-			"name" : "motor",
+			"name" : "MOTOR",
 			"id"   : "3",
 			"function" : "direction",
 			"pinno0F" : "14",
 			"pinno0B" : "15",
 			"pinno1F" : "16",
-			"pinno1B" : "17"
+			"pinno1B" : "17",
+			"devicetype" : "GPIOD"
+		},
+		{
+			"name" : "BUZ",
+			"id"   : "4",
+			"function" : "nokiatune",
+			"pinno" : "6",
+			"devicetype" : "GPIOD"
 		}
 	] 
 }
