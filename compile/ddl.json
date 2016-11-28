@@ -4,10 +4,10 @@
 			"name" : "temperaturesensor",
 		 	"id"   : "1",
 		 	"function" : "read",
-		 	"pinno": "1",
+		 	"pinno": "7",
 		 	"devicetype" : "ADC",
 		 	"measurement" : "celsius",
-		 	"formula": "((((temp*1.0/4096)*1800)-500)/10)" 
+		 	"formula": "((((temp*1.0/4096.0)*1800.0)-500.0)/10.0)" 
 		},
 		{
 			"name" : "led",
@@ -22,12 +22,11 @@
 		{
 			"name" : "motor",
 			"id"   : "3",
-			"function" : "write",
-			"pinno" : "15",
-			"devicetype" : "GPIOD",
-			"formula" : "((1*100)+pinno)",
-			"attribute1" : "ON",
-			"attribute2" : "OFF"
+			"function" : "direction",
+			"pinno0F" : "14",
+			"pinno0B" : "15",
+			"pinno1F" : "16",
+			"pinno1B" : "17"
 		}
 	] 
 }
