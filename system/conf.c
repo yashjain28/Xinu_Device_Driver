@@ -225,21 +225,21 @@ struct	dentry	devtab[NDEVS] =
 /* MOTOR is motor */
 	{ 29, 0, "MOTOR",
 	  (void *)motorinit, (void *)ioerr, (void *)ioerr,
-	  (void *)ioerr, (void *)motorwrite, (void *)ioerr,
+	  (void *)motorread, (void *)motorwrite, (void *)ioerr,
 	  (void *)ioerr, (void *)ioerr, (void *)ioerr,
 	  (void *)0x0, (void *)ionull, 0 },
 
 /* LED is led */
 	{ 30, 0, "LED",
 	  (void *)ledinit, (void *)ioerr, (void *)ioerr,
-	  (void *)ioerr, (void *)ledwrite, (void *)ioerr,
+	  (void *)ledread, (void *)ledwrite, (void *)ioerr,
 	  (void *)ioerr, (void *)ioerr, (void *)ioerr,
 	  (void *)0x0, (void *)ionull, 0 },
 
 /* BUZ is buz */
 	{ 31, 0, "BUZ",
 	  (void *)buzinit, (void *)ioerr, (void *)ioerr,
-	  (void *)ioerr, (void *)buzwrite, (void *)ioerr,
+	  (void *)buzread, (void *)buzwrite, (void *)ioerr,
 	  (void *)ioerr, (void *)ioerr, (void *)ioerr,
 	  (void *)0x0, (void *)ionull, 0 }
 };

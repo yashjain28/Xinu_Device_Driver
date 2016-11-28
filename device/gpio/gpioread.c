@@ -6,20 +6,18 @@ devcall gpioread(struct dentry *devptr, char *buff, int32 count){
 	struct gpiod *gpio,*gpio1;
 	int data;
 	gpio1 = (struct gpiod *)GPIO1_BASE_ADDRESS;
-	gpio1->gpio_oe |= 1<<count;
-	wait(read_sem);
+	//gpio1->gpio_oe |= 1<<count;
+	//wait(read_sem);
 	kprintf("inside read \n");
 	
 	
 	//read from gpio bank
-	data = gpio1->gpio_datain;
+	data = gpio1->gpio_dataout;
 	
 	kprintf("gpio 1 value %d \n", data);
-	data = data&(1<<count);
-	buff[0] = (data>>count);
-
-	//kprintf("gpio irq status %x \n", gpio1->gpio_irqstatus_set_0);
-	//kprintf("gpio rising edge %x \n ", gpio1->gpio_risingdetect);
-
-	return buff[0];
+	if(data!=0)
+		return 1;
+	else 
+		return 0;
+	
 }

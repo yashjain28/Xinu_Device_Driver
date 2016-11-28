@@ -74,33 +74,58 @@ int32 parse_data(char *buff)
     }
     else if(!strcmp(func_name,"led"))
     {
-        ret = write(LED,&arg1,2);
+        if(!strcmp(arg1,"read"))
+        {
+            ret = read(LED,&arg1,4);
+        }
+        else
+        {
+            ret = write(LED,&arg1,2);
+        }
         return ret;
     }
     else if(!strcmp(func_name,"motor"))
     {
-        if(!strcmp(arg1,"FORWARD"))
+        if(!strcmp(arg1,"read"))
         {
-            count = FORWARD;
+            ret = read(LED,&arg1,4);
         }
-        else if(!strcmp(arg1,"BACKWARD"))
+        else
         {
-            count = BACKWARD;
+            if(!strcmp(arg1,"FORWARD"))
+            {
+                count = FORWARD;
+            }
+            else if(!strcmp(arg1,"BACKWARD"))
+            {
+                count = BACKWARD;
+            }
+            else if(!strcmp(arg1,"LEFT"))
+            {
+                count = LEFT;
+            }
+            else if(!strcmp(arg1,"RIGHT"))
+            {
+                count = RIGHT;
+            }
+            else if(!strcmp(arg1,"STOP"))
+            {
+                count = STOP;
+            }
+            ret = write(MOTOR,&arg1,count);
+            return ret;
         }
-        else if(!strcmp(arg1,"LEFT"))
+    }
+    else if(!strcmp(func_name,"buz"))
+    {
+        if(!strcmp(arg1,"read"))
         {
-            count = LEFT;
+            ret = read(BUZ,&arg1,4);
         }
-        else if(!strcmp(arg1,"RIGHT"))
+        else if(!strcmp(arg1,"write"))
         {
-            count = RIGHT;
+            ret = write(BUZ,&arg1,5);
         }
-        else if(!strcmp(arg1,"STOP"))
-        {
-            count = STOP;
-        }
-        ret = write(MOTOR,&arg1,count);
-        return ret;
     }
     else
     {
@@ -128,8 +153,9 @@ process main(void)
             {
                kprintf("REceiving\n");
                val = parse_data(buff);
+               char op[10];
                itoa(val,op);
-               if(udp_sendto(slot,remip,remport,&op,10)!= SYSERR)
+               if(udp_sendto(slot,remip,remport,&op,strlen(op))!= SYSERR)
                {
                 kprintf("Sent!");
                }

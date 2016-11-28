@@ -10,8 +10,9 @@ void gpiohandler(uint32 xnum){
 	irqStatus = gpio1->gpio_irqstatus_raw_0;     
 	gpio1->gpio_irqstatus_0 = irqStatus;
 	//kprintf("interrupt disabled \n");
-	signal(read_sem);
+	//signal(read_sem);
 	csrptr->control |= (INTC_CONTROL_NEWIRQAGR);
 		//kprintf("invoking write to led \n");
+	//if(irqStatus&(1<<12)!=0)
 		gpiohandler_out();
 }
