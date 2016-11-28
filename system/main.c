@@ -34,6 +34,7 @@ int32 parse_data(char *buff)
 {
     int i = 0;
     int j = 0;
+    int32 count;
     char func_name[15];
     char temp[10];
     double ret;
@@ -78,7 +79,27 @@ int32 parse_data(char *buff)
     }
     else if(!strcmp(func_name,"motor"))
     {
-        ret = write(MOTOR,&arg1,2);
+        if(!strcmp(arg1,"FORWARD"))
+        {
+            count = FORWARD;
+        }
+        else if(!strcmp(arg1,"BACKWARD"))
+        {
+            count = BACKWARD;
+        }
+        else if(!strcmp(arg1,"LEFT"))
+        {
+            count = LEFT;
+        }
+        else if(!strcmp(arg1,"RIGHT"))
+        {
+            count = RIGHT;
+        }
+        else if(!strcmp(arg1,"STOP"))
+        {
+            count = STOP;
+        }
+        ret = write(MOTOR,&arg1,count);
         return ret;
     }
     else
@@ -96,16 +117,18 @@ process main(void)
     uint16 remport;
     int val;
     char op[10];
+    int32 timeout = 0;
     while(1){
     udp_init();
     if ((slot = udp_register(0,0,22))!= SYSERR){
         char buff[100];
-        if(udp_recvaddr(slot,&remip,&remport,&buff,100,1000) != SYSERR){
-               if(strlen(buff)>0){
+        kprintf("REgistered!\n");
+        if((timeout=udp_recvaddr(slot,&remip,&remport,&buff,100,1000)) != -1){
+            if(timeout != TIMEOUT)
+            {
+               kprintf("REceiving\n");
                val = parse_data(buff);
-               kprintf("%d\n",val);
                itoa(val,op);
-               kprintf("%s\n",op);
                if(udp_sendto(slot,remip,remport,&op,10)!= SYSERR)
                {
                 kprintf("Sent!");
