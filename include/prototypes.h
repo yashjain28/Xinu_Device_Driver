@@ -628,7 +628,7 @@ extern devcall motorinit(struct dentry *devptr);
 extern devcall motorwrite(struct dentry *devptr, char *buf, uint32 count);
 
 
-
+extern void nokiatune(char pinnum);
 
 /* NETWORK BYTE ORDER CONVERSION NOT NEEDED ON A BIG-ENDIAN COMPUTER */
 #define	htons(x)   ( ( 0xff & ((x)>>8) ) | ( (0xff & (x)) << 8 ) )
