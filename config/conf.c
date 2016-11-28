@@ -234,5 +234,12 @@ struct	dentry	devtab[NDEVS] =
 	  (void *)ledinit, (void *)ioerr, (void *)ioerr,
 	  (void *)ioerr, (void *)ledwrite, (void *)ioerr,
 	  (void *)ioerr, (void *)ioerr, (void *)ioerr,
+	  (void *)0x0, (void *)ionull, 0 },
+
+/* BUZ is buz */
+	{ 31, 0, "BUZ",
+	  (void *)buzinit, (void *)ioerr, (void *)ioerr,
+	  (void *)ioerr, (void *)buzwrite, (void *)ioerr,
+	  (void *)ioerr, (void *)ioerr, (void *)ioerr,
 	  (void *)0x0, (void *)ionull, 0 }
 };

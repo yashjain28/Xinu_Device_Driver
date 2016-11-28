@@ -44,6 +44,7 @@ REBUILDFLAGS	=	-s $(TOPDIR)/system  debug.c 	\
 			-s $(TOPDIR)/device/tempsensor	\
 			-s $(TOPDIR)/device/motor		\
 			-s $(TOPDIR)/device/led			\
+			-s $(TOPDIR)/device/buz			\
 			-s $(TOPDIR)/net  'arp_dump*'  		\
 				'dhcp_dump*'  pxe.c		\
 			-s $(TOPDIR)/shell  'xsh_rdstest*'
@@ -59,7 +60,7 @@ SFLAGS  = ${INCLUDE}
 
 LDFLAGS = -dn -m armelf -Map xinu.map -T ld.script
 
-all: xinu
+all: tempread.c xinu
 
 #--------------------------------------------------------------------------------
 # Handle generation of a new version string when initialize is recompiled

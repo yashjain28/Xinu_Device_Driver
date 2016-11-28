@@ -56,6 +56,7 @@ extern	struct	dentry	devtab[]; /* one entry per device */
 #define TMPS                28	/* type tmps     */
 #define MOTOR               29	/* type motor    */
 #define LED                 30	/* type led      */
+#define BUZ                 31	/* type buz      */
 
 /* Control block sizes */
 
@@ -75,8 +76,9 @@ extern	struct	dentry	devtab[]; /* one entry per device */
 #define	Ntmps	1
 #define	Nmotor	1
 #define	Nled	1
+#define	Nbuz	1
 
-#define NDEVS 31
+#define NDEVS 32
 
 
 /* Configuration and Size Constants */

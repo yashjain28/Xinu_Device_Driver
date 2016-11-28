@@ -615,7 +615,6 @@ extern void gpiokickout(int32 pin_num);
 
 /* in tempuratue sensor folder */
 extern devcall tempread(struct dentry *devptr, char *buf, int32 count);
-
 extern devcall tempinit(struct dentry	*devptr);
 
 /* in led folder */
@@ -623,14 +622,20 @@ extern devcall ledinit(struct dentry *devptr);
 extern devcall ledwrite(struct	dentry *devptr, char *buf, uint32	count);
 extern void ledkickout();
 extern void ledhandler_out();
+extern devcall ledread(struct dentry *devptr, char *buf, int32 count);
 
 /* in motor folder */
 
 extern devcall motorinit(struct dentry *devptr);
 extern devcall motorwrite(struct dentry *devptr, char *buf, uint32 count);
 extern void direction(int32 motornum, int32 dir);
+extern devcall motorread(struct dentry *devptr, char *buf, int32 count);
 
+/* in buz folder */
 extern void nokiatune(char pinnum);
+extern devcall buzwrite(struct dentry *devptr,char *buf ,uint32 count);
+extern devcall buzinit(struct dentry	*devptr);
+extern devcall buzread(struct dentry *devptr, char *buf, int32 count);
 
 /* NETWORK BYTE ORDER CONVERSION NOT NEEDED ON A BIG-ENDIAN COMPUTER */
 #define	htons(x)   ( ( 0xff & ((x)>>8) ) | ( (0xff & (x)) << 8 ) )
