@@ -1,9 +1,11 @@
 #include <xinu.h>
 
-/*------------------------------------------------------------------------
- * ethwrite - enqueue a packet for transmission on TI AM335X Ethernet
- *------------------------------------------------------------------------
- */
+extern sid32 gpio_sem;
+extern sid32 done_sem;
+extern sid32 shared_switch;
+extern int32 swtch;
+extern int32 gpio_pin_number;
+
 int32	gpiowrite (
 		struct	dentry *devptr,
 		void	*buf,
@@ -16,15 +18,19 @@ int32	gpiowrite (
 	struct gpiod *gpio1;
 	gpio1 = (struct gpiod *)GPIO1_BASE_ADDRESS;
 	for(i=0;i<count;i++){
-		data=*(((char *)buf)+i);
-		//kprintf("data %d\t",data);
-		value=data/100;
-		pinnumber=data%100;
-	//	kprintf("data %d val %d pinnum %d\t",data,value,pinnumber);
-		gpio1->gpio_oe = gpio1->gpio_oe & (~(1<<pinnumber));		
-		value=value<<pinnumber;
-		gpio1->gpio_dataout&=~(1<<pinnumber);
-		gpio1->gpio_dataout |= value;
-	}
-	
+		kprintf("acquiring gpio sem lock \n");
+		wait(gpio_sem);
+		kprintf("acquiring lock \n");
+		wait(shared_switch);
+
+			data=*(((char *)buf)+i);
+			value=data/100;
+			pinnumber=data%100;
+			swtch = value;
+			gpio_pin_number = pinnumber;
+		signal(shared_switch);
+		signal(done_sem);
+		kprintf("released all locks\n");
+		gpiokickout(12);
+	}	
 }

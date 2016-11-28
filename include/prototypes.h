@@ -609,6 +609,8 @@ extern int32	gpiowrite (
 extern devcall gpioread(struct dentry *devptr, char *buff, int32 count);
 extern int32 gpioinit(struct	dentry *devptr);
 extern void gpiohandler(uint32 xnum);
+extern void gpiohandler_out();
+extern void gpiokickout(int32 pin_num);
 
 
 /* in tempuratue sensor folder */
