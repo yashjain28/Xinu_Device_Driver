@@ -1,37 +1,35 @@
  #include <xinu.h>
- devcall motorwrite(struct dentry *devptr,char *buf,uint32 count)
+ devcall motorwrite(struct dentry *devptr,char *buffer,uint32 count)
  {
 
  	motorF[0]=14;
 	motorB[0]=15;
 	motorF[1]=16;
 	motorB[1]=17;
- 	count=1;
-
- 	if(strcmp(buf,"FORWARD"))
+ 	if(count==1)
  	{
- 		direction(motor1,buf,forwarddir);
-		direction(motor2,buf,forwarddir);		
+ 		direction(motor1,forwarddir);
+		direction(motor2,forwarddir);		
  	}
- 	else if(strcmp(buf,"BACKWARD"))
+ 	else if(count==2)
  	{
- 		direction(motor1,buf,backwarddir);
- 		direction(motor2,buf,backwarddir);
+ 		direction(motor1,backwarddir);
+ 		direction(motor2,backwarddir);
  	}
- 	else if(strcmp(buf,"LEFT"))
+ 	else if(count==3)
  	{
- 		direction(motor1,buf,stopdir);
- 		direction(motor2,buf,forwarddir);
+ 		direction(motor1,stopdir);
+ 		direction(motor2,forwarddir);
  	}
- 	else if(strcmp(buf,"RIGHT"))
+ 	else if(count==4)
  	{
- 		direction(motor1,buf,forwarddir);
- 		direction(motor2,buf,stopdir);
+ 		direction(motor1,forwarddir);
+ 		direction(motor2,stopdir);
  	}
- 	else if(strcmp(buf,"STOP"))
+ 	else if(count==5)
  	{
- 		direction(motor1,buf,stopdir);
- 		direction(motor2,buf,stopdir);
+ 		direction(motor1,stopdir);
+ 		direction(motor2,stopdir);
  	}
 
  	return OK;

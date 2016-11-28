@@ -11,6 +11,12 @@
  #define motor1 0
  #define motor2 1
 
+ #define FORWARD 1
+ #define BACKWARD 2
+ #define LEFT 3
+ #define RIGHT 4
+ #define STOP 5
+
 int32 motorF[2],motorB[2]; // index 0 for motor 1 and index 1 for motor 2
 
 struct gpiod {

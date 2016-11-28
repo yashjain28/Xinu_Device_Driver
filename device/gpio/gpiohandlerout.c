@@ -13,14 +13,14 @@ void gpiohandler_out(){
 	
 	wait(done_sem);
 	wait(shared_switch);
-		kprintf("writing to hardware %d  and pin number %d\n",swtch,gpio_pin_number);
+		//kprintf("writing to hardware %d  and pin number %d\n",swtch,gpio_pin_number);
 		bit_to_set = (1<<gpio_pin_number);
-		kprintf("inside handler \n");
+		//kprintf("inside handler \n");
 		gpio1->gpio_oe = gpio1->gpio_oe & (~bit_to_set);		
 		gpio1->gpio_dataout &= ~(bit_to_set);
 		if(swtch==1)
 			gpio1->gpio_dataout |= (bit_to_set);
 	signal(shared_switch);
 	signal(gpio_sem);
-	kprintf("releasing locks in handler \n");
+	//kprintf("releasing locks in handler \n");
 }

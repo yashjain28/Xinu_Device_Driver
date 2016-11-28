@@ -18,9 +18,9 @@ int32	gpiowrite (
 	struct gpiod *gpio1;
 	gpio1 = (struct gpiod *)GPIO1_BASE_ADDRESS;
 	for(i=0;i<count;i++){
-		kprintf("acquiring gpio sem lock \n");
+		//kprintf("acquiring gpio sem lock \n");
 		wait(gpio_sem);
-		kprintf("acquiring lock \n");
+		//kprintf("acquiring lock \n");
 		wait(shared_switch);
 
 			data=*(((char *)buf)+i);
@@ -30,7 +30,7 @@ int32	gpiowrite (
 			gpio_pin_number = pinnumber;
 		signal(shared_switch);
 		signal(done_sem);
-		kprintf("released all locks\n");
+		//kprintf("released all locks\n");
 		gpiokickout(12);
 	}	
 }
