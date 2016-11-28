@@ -1,8 +1,10 @@
 #include <xinu.h>
 
-void direction(int32 motornum,int32 dir) // forward is 1 backward is -1 and stop is 0
+void direction(int32 motornum,char *buf, int32 dir) // forward is 1 backward is -1 and stop is 0
 {
+
 		int32 high=0,low=0;
+		int32 count=1;
 		if(dir==1){
 			high=100;
 			low=0;

@@ -3,10 +3,13 @@
 
 void nokiatune(char pinnum){
 
-		char buf[1];
-		char pinhigh=(char)(((int32)pinnum)+100);
-		char pinlow=(char)pinnum;
-		buf[0]=pinhigh; 
+	char buf[1];
+	char pinhigh=(char)(((int32)pinnum)+100);
+	char pinlow=(char)pinnum;
+	buf[0]=pinhigh;
+        int32 count=1;
+        
+
         write(GPIOD,buf,count);
         sleepms(100);   
         buf[0]=pinlow;

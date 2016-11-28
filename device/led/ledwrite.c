@@ -1,17 +1,15 @@
 #include <xinu.h>
-
 devcall ledwrite(struct dentry *devptr,char *buf,uint32 count)
 {
 	int32 pinno = 13;
-	if(buf[0]=='O')
+	if(!strcpy(buf,"ON"))
 	{
 		buf[0] = ((1*100)+pinno);
 	}
-	else
+	else if(!strcpy(buf,"OFF"))
 	{
 		buf[0] = pinno;
 	}
-	//kprintf("calling kickout \n");
-	write(GPIOD,buf,1);
+	write(GPIOD,buf,count);
 	return OK;
 }

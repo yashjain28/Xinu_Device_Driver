@@ -5,6 +5,14 @@
 #define GPIO_DATAOUT 0x13C
 #define GPIO_RISING_EDGE 0x148
 
+ #define forwarddir 1
+ #define backwarddir -1
+ #define stopdir 0
+ #define motor1 0
+ #define motor2 1
+
+int32 motorF[2],motorB[2]; // index 0 for motor 1 and index 1 for motor 2
+
 struct gpiod {
 	uint32 gpio_revision; 
 	uint32 res1[3];

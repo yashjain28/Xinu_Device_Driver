@@ -59,7 +59,7 @@ SFLAGS  = ${INCLUDE}
 
 LDFLAGS = -dn -m armelf -Map xinu.map -T ld.script
 
-all:	tempread.c xinu
+all: xinu
 
 #--------------------------------------------------------------------------------
 # Handle generation of a new version string when initialize is recompiled
